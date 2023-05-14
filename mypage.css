@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    position: relative;
+    font-family: Georgia;
+    background-color: rgb(35, 35, 35);
+    color: whitesmoke;
+}
+
+a:link,
+a:visited {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+#header {
+    max-width: 1000px;
+    padding: 46px 0 26px 0;
+    margin: 0 auto 50px auto;
+    border-bottom: solid 1px #909090;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 50px;
+
+}
+
+nav .menu,
+nav .login {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+
+nav .menu li {
+    margin-right: 14px;
+}
+
+nav .login li {
+    margin-left: 14px;
+}
+
+.brand-logo {
+    border: 0.5px solid #909090;
+    width: 50%;
+    height: auto;
+    transition-duration: 0.5s;
+    box-shadow: 2px 2px rgb(0, 0, 0);
+}
+
+.brand-logo:hover {
+    transform: scale(1.08, 1.08);
+    cursor: pointer;
+    border: 0.5px solid #909090;
+}
+
+.logo-box {
+    display: flex;
+    justify-items: center;
+    width: 40%;
+    height: auto;
+    overflow: hidden;
+    margin-left: 40%;
+}
+
+.menu-all,
+.menu-new,
+.menu-vintage,
+.menu-category,
+.menu-resister,
+.menu-blog,
+.login-login,
+.login-contact {
+    transition-duration: 0.5s;
+}
+
+.menu-all:hover,
+.menu-new:hover,
+.menu-vintage:hover,
+.menu-category:hover,
+.menu-resister:hover,
+.menu-blog:hover,
+.login-login:hover,
+.login-contact:hover {
+    background-color: #4b4b4b;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.wrapper-footer {
+    max-width: calc(800px + 2px);
+    position: fixed;
+    bottom: 0px;
+    left: 55%;
+    transform: translateX(-50%);
+    padding-bottom: 30px;
+
+}
+
+nav {
+    width: 100%;
+}
+
+nav .menu-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    padding-bottom: 50px;
+    border-top: solid 1px #909090;
+    padding-top: 20px;
+}
+
+nav .menu-footer li {
+    font-size: 12px;
+    margin-right: 14px;
+}
+
+.copy-rights {
+    color: rgb(175, 122, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
