@@ -30,36 +30,43 @@
     </header>
 
     <main>
-        <div class="form-set">
 
+        <!-- データ出力場所 -->
+        <ul id="output"></ul>
+
+        <div class="form-set">
             <div class="profile-photo">
-                <input type="file" id="imageInput">
-                <button type="button" onclick="uploadImage()">アップロード</button>
+                <label class="profile-label">▼プロフィール画像を設定</label>
                 <div id="result"></div>
+                <div class="profile-photo-button">
+                    <input type="file" id="imageInput">
+                    <button type="button" onclick="uploadImage()">アップロード</button>
+                </div>
             </div>
             <br>
             <div class="input-name-class">
-                <label id="input-name-label">好きな名前(表示名)</label>
-                <input type="text" id="input-name">
+                <input type="text" id="input-name" placeholder="好きな名前(表示名)">
             </div>
             <br>
             <div class="input-birth-class">
-                <label id="input-birth-label">生年月日 (例:1993年1月29日はの場合：930129)</label>
-                <input type="text" id="input-birth">
+                <input type="text" id="input-birth" placeholder="生年月日 (例:1993年1月29日はの場合：1993/1/29)">
             </div>
             <br>
             <div class="input-commit-class">
-                <label id="input-commit-label">一言コメント</label>
-                <input type="text" id="input-commit">
+                <textarea rows="4" id="input-commit" placeholder="一言コメント"></textarea>
             </div>
             <ul class="control-button">
-                <button type="button" class="save-button" id="save">Save</button>
+                <button type="button" class="save-button" id="save" onclick="uploadFile()">Upload</button>
                 <button type="button" class="clear-button" id="clear">Delete</button>
             </ul>
-
         </div>
 
+        <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
         <script>
+            //▼以下ブラウザへ画像のアップロード
             function uploadImage() {
                 let input = document.getElementById("imageInput");
                 const file = input.files[0];
@@ -71,6 +78,8 @@
                     const img = new Image();
                     //読み込んだ画像ファイルのデータを Image オブジェクトのsrcプロパティに設定
                     img.src = e.target.result;
+                    // 20vh = 20% of viewport height
+                    img.width = window.innerHeight * 0.3;
 
                     const resultDiv = document.getElementById("result");
                     resultDiv.innerHTML = "";
@@ -80,7 +89,141 @@
 
                 //選択された画像ファイルを、FileReader オブジェクトを使用して Data URL 形式で読み込み、画像を表示
                 reader.readAsDataURL(file);
+            };
+        </script>
+
+        <script>
+            //▼以下cloud storageへの画像アップロード
+            // Firebase の設定        
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyDADUT7tlyvD8G-WfBpVQoUaY6fRxvvug8",
+                authDomain: "jschampionship-f5265.firebaseapp.com",
+                projectId: "jschampionship-f5265",
+                storageBucket: "jschampionship-f5265.appspot.com",
+                messagingSenderId: "171502542751",
+                appId: "1:171502542751:web:0e4129428f53af19ce67aa"
+            };
+
+            // Firebase App を初期化
+            firebase.initializeApp(firebaseConfig);
+
+            // Firebase Storage の参照を作成
+            const storageRef = firebase.storage().ref();
+
+            // ファイルが選択されたときに呼び出される関数
+            function uploadFile() {
+                const file = document.getElementById('imageInput').files[0];
+                const uploadTask = storageRef.child('users/' + file.name).put(file);
+                //state_changedイベントは、アップロード処理の3つの状態（アップロード開始、進行中、完了）に
+                //対応する3つのコールバック関数を受け取る
+                uploadTask.on('state_changed',
+                    function (snapshot) {
+                        // 進行中のアップロードの状況を監視する処理
+                    },
+                    function (error) {
+                        // エラー発生時の処理
+                        console.error(error);
+                    },
+                    function () {
+                        // アップロードが完了したときの処理
+                        console.log('Upload complete');
+                    });
+            };
+
+        </script>
+
+        <script>
+            function convertTimestampToDatetime(timestamp) {
+                const _d = timestamp ? new Date(timestamp * 1000) : new Date();
+                const Y = _d.getFullYear();
+                const m = (_d.getMonth() + 1).toString().padStart(2, '0');
+                const d = _d.getDate().toString().padStart(2, '0');
+                const H = _d.getHours().toString().padStart(2, '0');
+                const i = _d.getMinutes().toString().padStart(2, '0');
+                const s = _d.getSeconds().toString().padStart(2, '0');
+                return `${Y}/${m}/${d} ${H}:${i}:${s}`;
             }
+        </script>
+
+        <script type="module">
+            //▼以下firestore databaseへのテキストデータアップロード
+            import {
+                initializeApp
+            }
+                from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+
+            import {
+                getFirestore,
+                collection,
+                addDoc,
+                serverTimestamp,
+                query,
+                orderBy,
+                onSnapshot,
+            } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyDADUT7tlyvD8G-WfBpVQoUaY6fRxvvug8",
+                authDomain: "jschampionship-f5265.firebaseapp.com",
+                projectId: "jschampionship-f5265",
+                storageBucket: "jschampionship-f5265.appspot.com",
+                messagingSenderId: "171502542751",
+                appId: "1:171502542751:web:0e4129428f53af19ce67aa"
+            };
+
+            // Firebase App を初期化して連携させる
+            const app = initializeApp(firebaseConfig);
+            //firestoreのオブジェクトを取得
+            const db = getFirestore(app);
+
+            $("#save").on("click", function () {
+                // 送信時に必要な処理。
+
+                const postData = {
+                    name: $("#input-name").val(),
+                    birth: $("#input-birth").val(),
+                    comment: $("#input-commit").val(),
+                    time: serverTimestamp(),
+                };
+
+                addDoc(collection(db, "user"), postData);
+            });
+
+            //データ取得処理
+
+            const q = query(collection(db, "user"), orderBy("time", "desc"));
+
+            onSnapshot(q, (querySnapshot) => {
+                console.log(querySnapshot.docs);
+
+                //複雑な形のため必要なデータのみ抽出した「オブジェクト形式の配列」に変換
+                const documents = [];
+                querySnapshot.forEach((doc) => {
+                    console.log(doc.data());
+                    const document = {
+                        id: doc.id,
+                        data: doc.data(),
+                    };
+                    documents.push(document);
+                });
+
+
+                const htmlElements = [];
+                documents.forEach(function (document) {
+                    htmlElements.push(`
+                            <li id="${documents[0].id}">
+                                <p>Name: ${documents[0].data.name}</p>
+                                <p>Birth: ${documents[0].data.birth}</p>
+                                <p>Comment: ${documents[0].data.comment}</p>
+                            </li>
+                        `);
+                });
+
+                $("#output").html(htmlElements[0]);
+            });
+
+
         </script>
 
     </main>

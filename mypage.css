@@ -45,6 +45,10 @@ nav .login li {
 }
 
 .brand-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     border: 0.5px solid #909090;
     width: 50%;
     height: auto;
@@ -61,10 +65,12 @@ nav .login li {
 .logo-box {
     display: flex;
     justify-items: center;
+    align-items: center;
+    text-align: center;
     width: 40%;
     height: auto;
     overflow: hidden;
-    margin-left: 40%;
+    /* margin-left: 40%; */
 }
 
 .menu-all,

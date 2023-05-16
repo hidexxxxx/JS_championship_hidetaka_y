@@ -45,6 +45,7 @@ nav .login li {
 }
 
 .brand-logo {
+    margin-left: 9vh;
     border: 0.5px solid #909090;
     width: 50%;
     height: auto;
@@ -91,31 +92,53 @@ nav .login li {
 }
 
 .form-set {
-    margin-top: 15vh;
-    margin-bottom: 5vh;
+    margin-top: 10vh;
 }
 
-.profile-photo {
+.profile-label {
     display: flex;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-photo-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 2vh;
 }
 
 .input-name-class,
 .input-commit-class,
 .input-birth-class {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     font-size: 15px;
-    margin-left: 25%;
-    margin-right: 25%;
     margin-top: 30px;
-    align-items: baseline;
 }
 
 #input-name,
-#input-commit,
 #input-birth {
-    width: 250px;
+    font-size: 15px;
+    width: 60vh;
+    height: 3vh;
+}
+
+#input-commit {
+    font-size: 15px;
+    width: 60vh;
+    height: auto;
 }
 
 .input-name-label label,
@@ -133,10 +156,10 @@ li {
 .control-button {
     font-size: 20px;
     display: flex;
-    margin-left: 45%;
-    margin-right: 45%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding-top: 4%;
-    padding-bottom: 5%;
 }
 
 .save-button,
@@ -148,35 +171,20 @@ li {
     color: rgb(159, 116, 14);
     display: block;
     line-height: 1;
-    margin-right: 10px;
-    margin-bottom: 30px;
+    margin-right: 2vh;
+    margin-left: 2vh;
     text-align: center;
     cursor: pointer;
     box-shadow: 0.5px 0.5px black;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 .wrapper-footer {
-    max-width: calc(800px + 2px);
     position: relative;
-    bottom: 0px;
-    left: 55%;
-    transform: translateX(-50%);
     padding-bottom: 30px;
-    /* margin-left: 5%;
-    margin-right: 5%; */
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 nav {
@@ -187,8 +195,8 @@ nav .menu-footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     list-style-type: none;
-    padding-bottom: 50px;
     border-top: solid 1px #909090;
     padding-top: 20px;
 }
@@ -203,7 +211,8 @@ nav .menu-footer li {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: re;
+    text-align: center;
+    position: relative;
     bottom: 0px;
     width: 100%;
 }
