@@ -45,6 +45,10 @@ nav .login li {
 }
 
 .brand-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     border: 0.5px solid #909090;
     width: 50%;
     height: auto;
@@ -61,29 +65,25 @@ nav .login li {
 .logo-box {
     display: flex;
     justify-items: center;
+    align-items: center;
+    text-align: center;
     width: 40%;
     height: auto;
     overflow: hidden;
-    margin-left: 40%;
+    /* margin-left: 40%; */
 }
 
-.menu-all,
-.menu-new,
-.menu-vintage,
+.menu-mypage,
 .menu-category,
 .menu-resister,
-.menu-blog,
 .login-login,
 .login-contact {
     transition-duration: 0.5s;
 }
 
-.menu-all:hover,
-.menu-new:hover,
-.menu-vintage:hover,
+.menu-mypage:hover,
 .menu-category:hover,
 .menu-resister:hover,
-.menu-blog:hover,
 .login-login:hover,
 .login-contact:hover {
     background-color: #4b4b4b;
@@ -105,13 +105,12 @@ nav .login li {
 
 
 .wrapper-footer {
-    max-width: calc(800px + 2px);
-    position: fixed;
-    bottom: 0px;
-    left: 55%;
-    transform: translateX(-50%);
+    position: relative;
     padding-bottom: 30px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 nav {
@@ -122,8 +121,8 @@ nav .menu-footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     list-style-type: none;
-    padding-bottom: 50px;
     border-top: solid 1px #909090;
     padding-top: 20px;
 }
@@ -138,7 +137,8 @@ nav .menu-footer li {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    text-align: center;
+    position: relative;
     bottom: 0px;
     width: 100%;
 }
